@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>India Performance Apparel — Pitch &amp; Build Strategy</title>
+<style>
+  .viz-root {
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --page-plane:     #f9f9f7;
+    --text-primary:   #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted:     #898781;
+    --gridline:       #e1e0d9;
+    --baseline:       #c3c2b7;
+    --border:         rgba(11,11,11,0.10);
+    --series-1:       #2a78d6;
+    --series-2:       #eb6834;
+    --series-3:       #1baf7a;
+    --series-4:       #eda100;
+    --whitespace-fill: #ede9df;
+    --status-good:    #0ca30c;
+    --status-warning: #fab219;
+    --status-critical:#d03b3b;
+    --card-shadow: 0 1px 2px rgba(11,11,11,0.06), 0 1px 12px rgba(11,11,11,0.04);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) .viz-root {
+      color-scheme: dark;
+      --surface-1:      #1a1a19;
+      --page-plane:     #0d0d0d;
+      --text-primary:   #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted:     #898781;
+      --gridline:       #2c2c2a;
+      --baseline:       #383835;
+      --border:         rgba(255,255,255,0.10);
+      --series-1:       #3987e5;
+      --series-2:       #d95926;
+      --series-3:       #199e70;
+      --series-4:       #c98500;
+      --whitespace-fill: #232320;
+      --status-good:    #0ca30c;
+      --status-warning: #fab219;
+      --status-critical:#e66767;
+      --card-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 1px 12px rgba(0,0,0,0.2);
+    }
+  }
+  :root[data-theme="dark"] .viz-root {
+    color-scheme: dark;
+    --surface-1:      #1a1a19;
+    --page-plane:     #0d0d0d;
+    --text-primary:   #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted:     #898781;
+    --gridline:       #2c2c2a;
+    --baseline:       #383835;
+    --border:         rgba(255,255,255,0.10);
+    --series-1:       #3987e5;
+    --series-2:       #d95926;
+    --series-3:       #199e70;
+    --series-4:       #c98500;
+    --whitespace-fill: #232320;
+    --status-good:    #0ca30c;
+    --status-warning: #fab219;
+    --status-critical:#e66767;
+    --card-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 1px 12px rgba(0,0,0,0.2);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body.viz-root {
+    background: var(--page-plane);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 28px 20px 64px; }
+
+  .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; gap: 10px; flex-wrap: wrap; }
+  .eyebrow { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); font-weight: 600; }
+  .theme-toggle {
+    font: inherit; font-size: 12px; padding: 6px 10px; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--surface-1); color: var(--text-secondary);
+    cursor: pointer;
+  }
+  .theme-toggle:hover { color: var(--text-primary); }
+
+  .page-tabs { display: flex; gap: 8px; margin-bottom: 26px; border-bottom: 1px solid var(--border); }
+  .page-tab-btn {
+    font: inherit; font-size: 14px; font-weight: 700; padding: 10px 4px; margin-bottom: -1px;
+    border: none; border-bottom: 2px solid transparent; background: none; color: var(--text-muted); cursor: pointer;
+  }
+  .page-tab-btn + .page-tab-btn { margin-left: 14px; }
+  .page-tab-btn[aria-selected="true"] { color: var(--text-primary); border-bottom-color: var(--series-1); }
+  .page-panel { display: none; }
+  .page-panel.active { display: block; }
+
+  .hero { margin-bottom: 18px; }
+  h1 { font-size: 26px; line-height: 1.22; margin: 6px 0 8px; font-weight: 800; letter-spacing: -0.01em; }
+  .hero p { font-size: 15px; line-height: 1.55; color: var(--text-secondary); margin: 0; max-width: 68ch; }
+  .readtime { font-size: 12px; color: var(--text-muted); margin-top: 10px; }
+
+  /* Megastat hero row */
+  .megastat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0 8px; }
+  @media (max-width: 720px) { .megastat-row { grid-template-columns: 1fr; } }
+  .megastat { background: linear-gradient(180deg, color-mix(in srgb, var(--series-1) 9%, var(--surface-1)), var(--surface-1)); border: 1px solid var(--border); border-radius: 14px; padding: 16px; text-align: center; box-shadow: var(--card-shadow); }
+  .megastat .mv { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; color: var(--series-1); }
+  .megastat .ml { font-size: 12px; color: var(--text-secondary); margin-top: 4px; line-height: 1.4; }
+
+  .fact-check { font-size: 11.5px; color: var(--text-muted); margin: 8px 2px 24px; }
+  .fact-check summary { cursor: pointer; font-weight: 600; }
+  .fact-check ul { margin: 8px 0 0; padding-left: 18px; line-height: 1.6; }
+
+  section { margin-bottom: 32px; }
+  h2 { font-size: 17px; font-weight: 800; margin: 0 0 3px; }
+  h2 .step { color: var(--series-1); margin-right: 4px; }
+  .section-sub { font-size: 13px; color: var(--text-secondary); margin: 0 0 14px; line-height: 1.5; }
+
+  .chart-card {
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 14px;
+    padding: 16px 16px 8px; box-shadow: var(--card-shadow); position: relative;
+  }
+  svg text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; fill: var(--text-secondary); }
+  .axis-label { fill: var(--text-muted); font-size: 10.5px; }
+  .row-label { fill: var(--text-primary); font-size: 12.5px; font-weight: 600; }
+  .value-label { fill: var(--text-primary); font-size: 11.5px; font-weight: 600; }
+  .quad-label { fill: var(--text-muted); font-size: 10.5px; font-weight: 600; }
+  .bar-shape, .dot-shape { cursor: pointer; }
+
+  .legend-row { display: flex; align-items: center; gap: 14px; font-size: 11.5px; color: var(--text-secondary); margin: 6px 2px 4px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  .swatch { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+  .swatch.circle { border-radius: 50%; }
+
+  .tooltip {
+    position: fixed; pointer-events: none; z-index: 50;
+    background: var(--text-primary); color: var(--surface-1);
+    font-size: 12px; line-height: 1.4; padding: 8px 10px; border-radius: 8px;
+    max-width: 250px; box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+    opacity: 0; transform: translateY(4px); transition: opacity .1s ease, transform .1s ease;
+  }
+  .tooltip.show { opacity: 1; transform: translateY(0); }
+  .tooltip b { display: block; margin-bottom: 2px; }
+
+  /* Icon cards (visual, always-open, no accordion) */
+  .icon-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  @media (max-width: 720px) { .icon-row { grid-template-columns: 1fr; } }
+  .icon-card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 12px; padding: 14px; box-shadow: var(--card-shadow); }
+  .icon-badge { width: 26px; height: 26px; border-radius: 50%; background: var(--series-1); color: #fff; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
+  .icon-card h3 { margin: 0 0 5px; font-size: 13.5px; }
+  .icon-card p { margin: 0; font-size: 12.5px; color: var(--text-secondary); line-height: 1.5; }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 720px) { .split { grid-template-columns: 1fr; } }
+  .mini-card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; box-shadow: var(--card-shadow); }
+  .mini-card h3 { margin: 0 0 6px; font-size: 13.5px; }
+  .mini-card p { margin: 0; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+  .mini-card .kicker { font-size: 10.5px; text-transform: uppercase; letter-spacing: .04em; font-weight: 700; color: var(--series-1); margin-bottom: 6px; }
+
+  /* Timeline (GTM) */
+  .timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+  @media (max-width: 780px) { .timeline { grid-template-columns: 1fr; } }
+  .timeline::before { content:''; position: absolute; top: 15px; left: 6%; right: 6%; height: 2px; background: var(--gridline); }
+  @media (max-width: 780px) { .timeline::before { display: none; } }
+  .tl-step { position: relative; padding: 0 10px 0 0; }
+  .tl-dot { width: 32px; height: 32px; border-radius: 50%; background: var(--series-1); color: #fff; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; position: relative; z-index: 1; }
+  .tl-step h4 { margin: 0 0 4px; font-size: 12.5px; color: var(--series-1); text-transform: uppercase; letter-spacing: .03em; }
+  .tl-step h3 { margin: 0 0 6px; font-size: 13.5px; }
+  .tl-step p { margin: 0; font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+
+  .stat-inline { display: flex; gap: 12px; flex-wrap: wrap; margin: 12px 0 4px; }
+  .stat-pill { background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; box-shadow: var(--card-shadow); flex: 1; min-width: 150px; }
+  .stat-pill .v { font-size: 18px; font-weight: 700; }
+  .stat-pill .l { font-size: 11.5px; color: var(--text-secondary); margin-top: 2px; }
+
+  .funnel { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
+  .funnel-row { display: flex; align-items: center; gap: 12px; }
+  .funnel-bar { height: 34px; border-radius: 8px; background: var(--series-1); display: flex; align-items: center; padding: 0 12px; color: #fff; font-size: 12.5px; font-weight: 700; white-space: nowrap; }
+  .funnel-label { width: 190px; flex: none; font-size: 12px; color: var(--text-secondary); }
+  .funnel-label strong { display: block; color: var(--text-primary); font-size: 13px; }
+
+  .spend-total { font-size: 22px; font-weight: 800; margin: 4px 0 2px; }
+  .spend-bar { display: flex; width: 100%; height: 28px; border-radius: 8px; overflow: hidden; margin: 10px 0 10px; box-shadow: var(--card-shadow); }
+  .spend-bar span { display: block; height: 100%; }
+  .spend-legend { display: flex; flex-wrap: wrap; gap: 12px 18px; margin: 4px 0 2px; }
+  .spend-legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-secondary); }
+  .spend-legend-item .sw { width: 11px; height: 11px; border-radius: 3px; flex: none; }
+  .spend-legend-item strong { color: var(--text-primary); }
+
+  .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 14px 0 4px; }
+  @media (max-width: 720px) { .metric-grid { grid-template-columns: repeat(2, 1fr); } }
+  .metric-card { border: 1px solid var(--border); border-radius: 10px; padding: 11px 13px; background: var(--surface-1); box-shadow: var(--card-shadow); }
+  .metric-card .mk { font-size: 10.5px; text-transform: uppercase; letter-spacing: .03em; font-weight: 700; color: var(--series-1); }
+  .metric-card .mtarget { font-size: 16px; font-weight: 800; margin: 3px 0 2px; }
+  .metric-card p { margin: 0; font-size: 11.5px; color: var(--text-secondary); line-height: 1.4; }
+
+  .ask-card { border-radius: 14px; padding: 18px; background: color-mix(in srgb, var(--series-1) 10%, var(--surface-1)); border: 1px solid var(--border); }
+  .ask-card .label { font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: var(--series-1); font-weight: 700; margin-bottom: 8px; }
+  .ask-card p { margin: 0 0 8px; font-size: 14px; line-height: 1.6; color: var(--text-primary); }
+  .ask-card p:last-child { margin-bottom: 0; }
+
+  .risk-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 720px) { .risk-row { grid-template-columns: 1fr; } }
+  .risk-card { border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; background: color-mix(in srgb, var(--status-warning) 6%, var(--surface-1)); }
+  .risk-card h4 { margin: 0 0 4px; font-size: 12.5px; color: var(--text-primary); }
+  .risk-card p { margin: 0; font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+  .bm-card { border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; background: color-mix(in srgb, var(--series-1) 6%, var(--surface-1)); }
+  .bm-card h4 { margin: 0 0 4px; font-size: 12.5px; color: var(--text-primary); }
+  .bm-card p { margin: 0; font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+
+  .placeholder-box { border: 1px dashed var(--text-muted); border-radius: 10px; padding: 12px 14px; font-size: 12.5px; color: var(--text-muted); font-style: italic; }
+
+  .verdict {
+    border-radius: 14px; padding: 18px 18px; background: color-mix(in srgb, var(--series-1) 8%, var(--surface-1));
+    border: 1px solid var(--border);
+  }
+  .verdict p { margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--text-primary); }
+  .verdict .label { font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: var(--series-1); font-weight: 700; margin-bottom: 6px; }
+
+  details.sources { font-size: 12.5px; color: var(--text-secondary); margin-top: 10px; }
+  details.sources summary { cursor: pointer; font-weight: 600; color: var(--text-primary); padding: 4px 0; }
+  details.sources ul { margin: 8px 0 0; padding-left: 18px; line-height: 1.7; }
+  details.sources a { color: var(--series-1); }
+
+  .accordion { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--surface-1); box-shadow: var(--card-shadow); }
+  .acc-item + .acc-item { border-top: 1px solid var(--border); }
+  .acc-head {
+    width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 10px;
+    background: none; border: none; text-align: left; cursor: pointer; padding: 14px 16px;
+    font: inherit; color: var(--text-primary); font-size: 14px; font-weight: 600;
+  }
+  .acc-head .chev { color: var(--text-muted); font-size: 13px; transition: transform .15s ease; flex: none; }
+  .acc-item.open .acc-head .chev { transform: rotate(45deg); }
+  .acc-body { max-height: 0; overflow: hidden; transition: max-height .25s ease; }
+  .acc-item.open .acc-body { max-height: 900px; }
+  .acc-body-inner { padding: 0 16px 16px; font-size: 13.5px; line-height: 1.6; color: var(--text-secondary); }
+  .acc-body-inner strong { color: var(--text-primary); }
+  .acc-body-inner p { margin: 0 0 10px; }
+  .acc-body-inner p:last-child { margin-bottom: 0; }
+  .acc-body-inner ul { margin: 0 0 10px; padding-left: 18px; }
+  .acc-body-inner li { margin-bottom: 6px; }
+
+  .table-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 14px; background: var(--surface-1); box-shadow: var(--card-shadow); }
+  table.spend { border-collapse: collapse; width: 100%; min-width: 620px; font-size: 12px; }
+  table.spend th, table.spend td { padding: 8px 8px; text-align: right; border-bottom: 1px solid var(--gridline); white-space: nowrap; }
+  table.spend th:first-child, table.spend td:first-child { text-align: left; position: sticky; left: 0; background: var(--surface-1); }
+  table.spend thead th { color: var(--text-muted); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .02em; border-bottom: 1px solid var(--border); }
+  table.spend tbody tr:hover td { background: color-mix(in srgb, var(--series-1) 6%, transparent); }
+  table.spend tfoot td { font-weight: 700; color: var(--text-primary); border-top: 2px solid var(--border); border-bottom: none; }
+  table.spend .phase-row td { background: color-mix(in srgb, var(--series-1) 5%, transparent); font-weight: 700; color: var(--text-primary); text-align: left; }
+
+  .stitch-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  @media (max-width: 720px) { .stitch-grid { grid-template-columns: 1fr; } }
+  .stitch-card { border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; background: var(--surface-1); }
+  .stitch-card .tier { font-size: 10px; text-transform: uppercase; font-weight: 700; letter-spacing: .04em; color: var(--text-muted); }
+  .stitch-card h4 { margin: 4px 0 4px; font-size: 13px; }
+  .stitch-card p { margin: 0; font-size: 12.5px; color: var(--text-secondary); line-height: 1.5; }
+
+  .sku-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  @media (max-width: 720px) { .sku-grid { grid-template-columns: 1fr; } }
+  .sku-card { border: 1px solid var(--border); border-radius: 12px; padding: 14px; background: var(--surface-1); box-shadow: var(--card-shadow); }
+  .sku-card .brand { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .03em; color: var(--series-1); }
+  .sku-card .num { font-size: 22px; font-weight: 800; margin: 4px 0 2px; }
+  .sku-card p { margin: 0; font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+</style>
+</head>
+<body class="viz-root">
+<div class="wrap">
+
+  <div class="topbar">
+    <span class="eyebrow">India performance apparel · Aug 2026</span>
+    <button class="theme-toggle" id="themeToggle" type="button">Dark mode</button>
+  </div>
+
+  <div class="page-tabs">
+    <button class="page-tab-btn" data-page="pitch" aria-selected="true">Pitch</button>
+    <button class="page-tab-btn" data-page="strategy" aria-selected="false">Build strategy</button>
+  </div>
+
+  <!-- ================= PAGE 1: PITCH (Whitespace + Investor Pitch, combined) ================= -->
+  <div class="page-panel active" id="page-pitch">
+
+    <div class="hero">
+      <h1>India's premium performance apparel shelf is empty. Here's the proof — and the pitch.</h1>
+      <p>Serious Indian athletes spend ₹15,000+ on race day and default to Nike, Under Armour, or Gymshark — not from loyalty, but because no Indian brand has proven it belongs above ₹2,500.</p>
+    </div>
+
+    <section>
+      <h2>The competitive landscape</h2>
+      <p class="section-sub">X = retail price range (₹, India where sold locally). Y = technical/performance positioning — a qualitative read of brand claims and market perception, not a lab score. The top-right quadrant isn't empty in absolute terms — Nike, Under Armour, and Gymshark already sit there. It's empty of <strong>Indian</strong> brands. That's the actual gap.</p>
+      <div class="megastat" style="max-width:260px;margin:2px 0 16px;"><div class="mv">₹2,500–4,000</div><div class="ml">Recommended launch band</div></div>
+      <div class="chart-card">
+        <div id="quadChart"></div>
+        <div class="legend-row">
+          <span class="legend-item"><span class="swatch circle" style="background:var(--series-1)"></span> Indian brand</span>
+          <span class="legend-item"><span class="swatch circle" style="background:var(--series-2)"></span> Global incumbent (reference)</span>
+          <span class="legend-item"><span class="swatch" style="background:var(--whitespace-fill); border:1px dashed var(--text-muted)"></span> Zone no Indian brand occupies</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Market size — bottom-up, not licensed research</h2>
+      <p class="section-sub">Shown as a range on purpose — nobody publishes a report sizing this exact sub-segment.</p>
+      <div class="chart-card">
+        <div class="funnel">
+          <div class="funnel-row"><div class="funnel-label"><strong>TAM</strong>India athleisure market</div><div class="funnel-bar" style="width:100%;">≈ ₹1,16,000 Cr ($13.9B), 2025</div></div>
+          <div class="funnel-row"><div class="funnel-label"><strong>SAM</strong>₹2,500+ performance-credible</div><div class="funnel-bar" style="width:58%;opacity:0.75;">≈ ₹3,500–5,800 Cr (our estimate)</div></div>
+          <div class="funnel-row"><div class="funnel-label"><strong>SOM</strong>Realistic 3-yr capture</div><div class="funnel-bar" style="width:20%;opacity:0.55;">₹15–25 Cr revenue</div></div>
+        </div>
+        <p style="font-size:11px;color:var(--text-muted);margin:4px 2px 8px;line-height:1.5;">SAM reasoned from BlissClub being effectively the only premium-band player at ₹131.5 Cr after 5 years. SOM is sized to that actual trajectory, not a hockey-stick assumption.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Revenue reality check</h2>
+      <p class="section-sub">Log scale — hover a bar for exact figures and confidence notes.</p>
+      <div class="chart-card">
+        <div id="revenueChart"></div>
+        <div class="legend-row">
+          <span class="legend-item"><span class="swatch" style="background:var(--status-good)"></span> Profitable</span>
+          <span class="legend-item"><span class="swatch" style="background:var(--status-warning)"></span> Loss-making</span>
+          <span class="legend-item"><span class="swatch" style="background:var(--text-muted)"></span> Not disclosed / low-confidence</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Business model</h2>
+      <div class="risk-row">
+        <div class="bm-card"><h4>Pricing</h4><p>₹2,500–4,000 ASP — the confirmed empty shelf, above the ₹800–2,500 mass tier and below where any Indian brand has proven pricing.</p></div>
+        <div class="bm-card"><h4>Gross margin target</h4><p>&gt;60% on core SKUs — the 2026 investor bar.</p></div>
+        <div class="bm-card"><h4>CAC payback</h4><p>&lt;6 months is the 2026 investor target. Nobody in the category clears it yet — realistic path is &lt;12 mo by month 18, &lt;6 by month 24.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Go-to-market</h2>
+      <div class="timeline">
+        <div class="tl-step"><div class="tl-dot">1</div><h4>M1–9</h4><h3>Community before product</h3><p>WhatsApp/Instagram, co-created fit specs; small measured paid spend begins from month 3.</p></div>
+        <div class="tl-step"><div class="tl-dot">2</div><h4>M6–9</h4><h3>Soft launch</h3><p>4 SKUs, one flagship proof event with 20–50 real athletes.</p></div>
+        <div class="tl-step"><div class="tl-dot">3</div><h4>M10–18</h4><h3>Scale the wedge</h3><p>Marketplaces deepen, bigger reorders, paid spend scales as CAC payback data comes in.</p></div>
+        <div class="tl-step"><div class="tl-dot">4</div><h4>M18–24</h4><h3>Growth</h3><p>Paid marketing scale-up, only once CAC payback is demonstrably under 6 months.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Financials &amp; the ask</h2>
+      <p class="section-sub">₹7 Cr, to build this to a proven, fundable business over ~24 months — community, product, first production runs, team, and the marketing spend to scale once the unit economics hold.</p>
+      <div class="chart-card" style="margin-top:4px;">
+        <div class="spend-total">₹7 Cr <span style="font-size:13px;font-weight:600;color:var(--text-secondary);">total ask</span></div>
+        <div class="spend-bar">
+          <span style="width:32%;background:var(--series-1);" title="Team — 32%"></span><span style="width:30%;background:var(--series-2);" title="Inventory &amp; production — 30%"></span><span style="width:20%;background:var(--series-3);" title="Marketing &amp; community — 20%"></span><span style="width:7%;background:var(--series-4);" title="Sampling &amp; R&amp;D — 7%"></span><span style="width:6%;background:var(--status-good);" title="Tech &amp; ops — 6%"></span><span style="width:5%;background:var(--text-muted);" title="Buffer — 5%"></span>
+        </div>
+        <div class="spend-legend">
+          <span class="spend-legend-item"><span class="sw" style="background:var(--series-1);"></span><strong>₹2.24 Cr · 32%</strong>&nbsp;Team</span>
+          <span class="spend-legend-item"><span class="sw" style="background:var(--series-2);"></span><strong>₹2.1 Cr · 30%</strong>&nbsp;Inventory &amp; production</span>
+          <span class="spend-legend-item"><span class="sw" style="background:var(--series-3);"></span><strong>₹1.4 Cr · 20%</strong>&nbsp;Marketing &amp; community</span>
+          <span class="spend-legend-item"><span class="sw" style="background:var(--series-4);"></span><strong>₹0.49 Cr · 7%</strong>&nbsp;Sampling &amp; R&amp;D</span>
+          <span class="spend-legend-item"><span class="sw" style="background:var(--status-good);"></span><strong>₹0.42 Cr · 6%</strong>&nbsp;Tech &amp; ops</span>
+          <span class="spend-legend-item"><span class="sw" style="background:var(--text-muted);"></span><strong>₹0.35 Cr · 5%</strong>&nbsp;Buffer</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Risks — stated plainly</h2>
+      <div class="risk-row">
+        <div class="risk-card"><h4>Category funding is cooling</h4><p>Indian seed funding was down ~30% in 2025; apparel faces real headwinds vs. beauty/food D2C.</p></div>
+        <div class="risk-card"><h4>Nobody has proven this niche</h4><p>The closest comparable in this price band is still at -15% EBITDA after 5+ years and ₹260Cr+ raised.</p></div>
+        <div class="risk-card"><h4>3+ year horizon, not 12–18 months</h4><p>Every adjacent success (Fast&amp;Up) took multi-year trust-building before scaling.</p></div>
+        <div class="risk-card"><h4>Fit-heavy SKUs draw the most returns</h4><p>Leggings and sports bras — the likely hero SKUs — sit exactly where COD returns (25–42%) bite hardest.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="ask-card">
+        <div class="label">The ask</div>
+        <p>Thoughts on whether the thesis holds, and any introductions to people worth talking to in this space.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="verdict">
+        <div class="label">Bottom line</div>
+        <p>This is performance apparel with genuine product authority in the ₹2,500–4,000 band — a 3+ year build to profitability, not a 12–18 month D2C sprint. Full sourcing, construction, and funding detail on the <strong>Build strategy</strong> tab.</p>
+      </div>
+      <details class="sources">
+        <summary>Sources</summary>
+        <ul>
+          <li><a href="https://www.modaes.com/global/companies/gymshark-record-turnover-of-7486-million-euros-in-2025-up-64" target="_blank" rel="noopener">Gymshark's Revenue Soars to Record €748.6M in 2025 — Modaes</a></li>
+          <li><a href="https://indianstartupnews.com/funding/performance-wear-brand-technosport-raises-usd-21m-from-a91-partners-4732571" target="_blank" rel="noopener">TechnoSport raises $21M from A91 Partners</a></li>
+          <li><a href="https://entrackr.com/fintrackr/blissclub-posts-rs-130-cr-revenue-in-fy25-cuts-losses-by-55-11176761" target="_blank" rel="noopener">BlissClub posts ₹130Cr revenue in FY25 — Entrackr</a></li>
+          <li><a href="https://entrackr.com/news/d2c-athleisure-brand-blissclub-raises-rs-160-cr-in-series-b-led-by-singularity-amc-12238770" target="_blank" rel="noopener">BlissClub raises ₹160 Cr Series B — Entrackr</a></li>
+          <li><a href="https://entrackr.com/fintrackr/decathlon-india-posts-rs-4008-cr-revenue-and-rs-197-cr-pat-in-fy24-8874740" target="_blank" rel="noopener">Decathlon India ₹4,008 Cr revenue, ₹197 Cr PAT FY24 — Entrackr</a></li>
+          <li><a href="https://in.fashionnetwork.com/news/Hrx-eyes-rs-1-000-crore-revenue-in-fy23,1478906.html" target="_blank" rel="noopener">HRX eyes ₹1,000 Cr revenue in FY23 — FashionNetwork India</a></li>
+          <li><a href="https://entrepreneurnewsnetwork.com/2026/04/12/from-%E2%82%B94-lakh-to-%E2%82%B942-5-crore-how-a-family-trio-from-surat-built-indias-gymwear-revolution/" target="_blank" rel="noopener">Fuaark: ₹4L to ₹42.5Cr — Entrepreneur News Network</a></li>
+          <li><a href="https://ascendants.in/the-ascendants/athflex-india-gymshark-bootstrapped-startup-andrew-leo/" target="_blank" rel="noopener">Athflex bootstrapped to ₹4.5 Cr — Ascendants</a></li>
+          <li><a href="https://www.imarcgroup.com/india-athleisure-market" target="_blank" rel="noopener">India Athleisure Market Size — IMARC Group</a></li>
+          <li><a href="https://thed2cpulse.com/market-industry-d2c/d2c-funding-trends-india-2026/" target="_blank" rel="noopener">D2C Funding Trends in India 2026 — The D2C Pulse</a></li>
+          <li><a href="https://birdeyeindia.com/" target="_blank" rel="noopener">Bird Eye India</a></li>
+          <li><a href="https://www.elawear.com/" target="_blank" rel="noopener">Ela Wear — pricing &amp; positioning</a></li>
+          <li><a href="https://news.ventureintelligence.com/ma/nykaa-acquires-assets-of-activewear-brand-kica-for-rs.4.51-cr" target="_blank" rel="noopener">Nykaa acquires Kica assets for ₹4.51 Cr (2022) — Venture Intelligence</a></li>
+          <li><a href="https://www.nykaa.com/kica-second-skin-grey-essential-high-waisted-leggings-with-2-pockets/p/8621644" target="_blank" rel="noopener">Kica leggings pricing on Nykaa</a></li>
+          <li><a href="https://thenewsmill.com/2026/04/ultrahuman-hyrox-bengaluru-sets-new-record-with-over-8200-participants/" target="_blank" rel="noopener">HYROX Bengaluru: 8,200+ participants, record growth — The News Mill</a></li>
+          <li><a href="https://blog.kulficollective.com/run-clubs-are-booming-in-india-what-does-this-mean-for-the-future-of-amateur-sport-2/" target="_blank" rel="noopener">Run clubs booming in India — Kulfi Collective</a></li>
+          <li><a href="https://blissclub.com/pages/women-leggings" target="_blank" rel="noopener">BlissClub leggings — current pricing</a></li>
+        </ul>
+      </details>
+    </section>
+
+  </div>
+
+  <!-- ================= PAGE 2: BUILD STRATEGY ================= -->
+  <div class="page-panel" id="page-strategy">
+
+    <div class="hero">
+      <h1>How to actually build this</h1>
+    </div>
+
+    <section>
+      <h2><span class="step">01</span>Go-to-market — sequencing, not everything at once</h2>
+      <p class="section-sub">Tap a phase to expand.</p>
+
+      <div class="accordion">
+        <div class="acc-item open">
+          <button class="acc-head"><span>Phase 0 · Months 0–6 — Community before product</span><span class="chev">+</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>Pick <strong>one</strong> activity/sport wedge and commit to it publicly. Rather than starting a community from scratch, embed in the ones that already exist — run clubs, gym crews, WhatsApp/Instagram fitness groups — for several months, and let them spec the product (sizing, pockets, fabric feel) directly. Run fit/pattern R&amp;D against real Indian-body measurements in parallel. Small, measured paid spend begins from month 3, alongside the community work.</p>
+          </div></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head"><span>Phase 1 · Months 6–12 — Soft launch, single hero category</span><span class="chev">+</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>Launch with <strong>4 SKUs</strong> — 2 sports bras, 1 short compression tights, 1 flare pant — enough range to cover the core use cases without diluting fit depth on any one. Sell direct via your own site + Instagram, and add marketplace presence (Myntra, Nykaa Fashion) within the first 9 months rather than waiting for later validation. Keep COD low and prepaid-favoring to protect margin (COD returns run 25–42% vs. 8–15% prepaid). Get the product onto real athletes at the events your customer actually cares about — this is the "proof event," documented unfiltered, flaws included.</p>
+          </div></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head"><span>Phase 2 · Months 12–24 — Scale the wedge, add channels</span><span class="chev">+</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>Expand SKUs within the same category (don't jump sports or genders yet). Deepen marketplace presence and reorder volume as repeat-purchase and return-rate data comes in. First physical touchpoints — pop-ups, partner gyms/studios. Paid performance marketing scales meaningfully here, once CM2 is positive or clearly trending there — small measured tests already began in Phase 0.</p>
+          </div></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head"><span>Phase 3 · Month 24+ — Category &amp; gender expansion</span><span class="chev">+</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>Only once the first wedge is profitable does a second activity or the second gender make sense — this is when Gymshark added women's (years after launching men's-only) and when Lululemon moved beyond yoga. Retail stores and a genuine ₹4–5K premium tier belong here too.</p>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="step">02</span>How performance is actually engineered — and what's copyable</h2>
+      <p class="section-sub">"Why do Nike/UA/Gymshark perform well" has a specific, unglamorous answer: fiber-level engineering, knit/weave construction, and seam placement — in that order. None of it is a secret formula, and most of it is buildable at Tiruppur scale.</p>
+      <div class="sku-grid">
+        <div class="sku-card"><div class="brand">Nike — Dri-FIT</div><div class="num">Capillary action</div><p>Fine synthetic (mostly polyester) fibers form micro-channels that pull sweat outward by surface tension, spreading it across a larger area to evaporate faster. It's a yarn/fiber property, not a Nike-exclusive chemical — the same principle is available from any qualified technical-yarn mill.</p></div>
+        <div class="sku-card"><div class="brand">Under Armour — HeatGear</div><div class="num">4-way stretch + flatlock</div><p>Sweat-wicking performance fibers, 4-way stretch construction for multi-directional movement, and ergonomic flatlock seams to cut chafing. HeatGear Elite adds NEOLAST™, a spandex-free stretch fiber — the rest is standard technical-apparel construction.</p></div>
+        <div class="sku-card"><div class="brand">Gymshark — Seamless</div><div class="num">Warp-knit machinery</div><p>Polyester/nylon/spandex blends plus mesh ventilation zones, moving toward warp-knit seamless construction that eliminates traditional seams entirely. This one genuinely needs specialized machinery — see the stitching tiers below.</p></div>
+      </div>
+
+      <div class="risk-row" style="margin-top:14px;">
+        <div class="bm-card"><h4>Replicable at Tiruppur scale, now</h4><p>Technical polyester/nylon/spandex yarn with moisture-wicking finish (sourced via Canton Fair or Indian mills) · four-way stretch knits · flatlock seams for chafe reduction · mesh ventilation panels at sweat zones · compression mapping through pattern-cutting, not fabric chemistry.</p></div>
+        <div class="risk-card"><h4>Yet to be tested if it can be done</h4><p>Full seamless warp-knit construction (Gymshark's newer lines) · proprietary fiber chemistry with years of in-house R&amp;D · bonded/ultrasonic seams at low MOQ (limited Indian suppliers today) — these are Phase 2+ upgrades, not Day 1 requirements.</p></div>
+      </div>
+
+      <div class="ask-card" style="margin-top:14px;">
+        <div class="label">Where your differentiation actually comes from</div>
+        <p>Not from inventing a fiber Nike hasn't already engineered — that's decades of R&amp;D you can't out-spend. Your edge is applying the <em>same construction rigor</em> (flatlock seams, ventilation paneling, compression mapping) to a pattern calibrated for Indian body proportions specifically — none of the three global brands do this. The differentiation has to be real performance function — fit accuracy, chafe reduction, compression placement — not an aesthetics-only story dressed up as technical. Athflex already uses "for Indian bodies" as a tagline, so the positioning itself isn't unclaimed — the gap is proving it works in training, not just in marketing copy. Two SKUs engineered this way out-differentiate a wider line built on generic aesthetics.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="step">03</span>Funding — the ask</h2>
+      <p class="section-sub">₹7 Cr, over ~24 months. One number: community and product R&amp;D, first production runs, team, and the marketing spend to scale once CAC payback holds.</p>
+      <div class="stat-inline">
+        <div class="stat-pill"><div class="v">₹7 Cr</div><div class="l">Total ask — self-funded/angel to start, institutional as traction builds</div></div>
+        <div class="stat-pill"><div class="v">TBD</div><div class="l">CAC payback target — to be set once real cohort data exists, not presumed upfront</div></div>
+        <div class="stat-pill"><div class="v">Small → scale</div><div class="l">Paid marketing starts small and measured from month 3, scales as CAC payback data comes in</div></div>
+      </div>
+
+      <h3 style="font-size:13.5px;margin:22px 0 4px;">Where the ₹7 Cr goes</h3>
+      <div class="spend-bar">
+        <span style="width:32%;background:var(--series-1);" title="Team — 32%"></span><span style="width:30%;background:var(--series-2);" title="Inventory &amp; production — 30%"></span><span style="width:20%;background:var(--series-3);" title="Marketing &amp; community — 20%"></span><span style="width:7%;background:var(--series-4);" title="Sampling &amp; R&amp;D — 7%"></span><span style="width:6%;background:var(--status-good);" title="Tech &amp; ops — 6%"></span><span style="width:5%;background:var(--text-muted);" title="Buffer — 5%"></span>
+      </div>
+      <div class="spend-legend">
+        <span class="spend-legend-item"><span class="sw" style="background:var(--series-1);"></span><strong>₹2.24 Cr · 32%</strong>&nbsp;Team</span>
+        <span class="spend-legend-item"><span class="sw" style="background:var(--series-2);"></span><strong>₹2.1 Cr · 30%</strong>&nbsp;Inventory &amp; production</span>
+        <span class="spend-legend-item"><span class="sw" style="background:var(--series-3);"></span><strong>₹1.4 Cr · 20%</strong>&nbsp;Marketing &amp; community</span>
+        <span class="spend-legend-item"><span class="sw" style="background:var(--series-4);"></span><strong>₹0.49 Cr · 7%</strong>&nbsp;Sampling &amp; R&amp;D</span>
+        <span class="spend-legend-item"><span class="sw" style="background:var(--status-good);"></span><strong>₹0.42 Cr · 6%</strong>&nbsp;Tech &amp; ops</span>
+        <span class="spend-legend-item"><span class="sw" style="background:var(--text-muted);"></span><strong>₹0.35 Cr · 5%</strong>&nbsp;Buffer</span>
+      </div>
+      <p style="font-size:12px;color:var(--text-muted);margin-top:10px;line-height:1.5;">First small production run (months 3–6) covers roughly 1,000–1,500 units across the 4 launch SKUs — enough to soft-launch and get real repeat-purchase data. Sampling/R&amp;D and community spend front-load early; team and inventory spend build through the back half as the wedge scales.</p>
+
+      <h3 style="font-size:13.5px;margin:26px 0 8px;">Metrics we'll actually track, months 1–9</h3>
+      <div class="metric-grid">
+        <div class="metric-card"><div class="mk">Repeat purchase rate</div><div class="mtarget">&gt;15–20%</div><p>The single clearest signal the product — not just the launch hype — is working. The number any follow-on conversation actually turns on.</p></div>
+        <div class="metric-card"><div class="mk">CAC</div><div class="mtarget">Track, don't chase</div><p>Blended cost per acquisition across organic (referral, community, proof event) and the small measured paid spend that begins month 3 — tracked honestly from day one.</p></div>
+        <div class="metric-card"><div class="mk">CAC payback</div><div class="mtarget">Yet to be decided</div><p>No credible target exists yet in this category — nobody has cleared the 2026 investor bar of &lt;6 months. Tracked from month 1 using blended CAC, with a real target set once cohort data exists rather than presumed upfront.</p></div>
+        <div class="metric-card"><div class="mk">Gross margin</div><div class="mtarget">&gt;60%</div><p>The 2026 investor bar — tracked per SKU from the first production run.</p></div>
+        <div class="metric-card"><div class="mk">Contribution margin (CM1)</div><div class="mtarget">Yet to be decided</div><p>Category norm today runs 20–35%; nobody has proven a higher number in this segment yet. A real target gets set once production and sales data exist, rather than presumed upfront — but it's the number that matters most, more than revenue alone.</p></div>
+        <div class="metric-card"><div class="mk">Return / exchange rate</div><div class="mtarget">Beat 25–42% COD norm</div><p>Fit-heavy SKUs (leggings, bras) draw the most returns industry-wide. Low-COD, prepaid-favoring checkout is the main lever; fit-accuracy feedback from the community is the other.</p></div>
+        <div class="metric-card"><div class="mk">Community size &amp; activity</div><div class="mtarget">Track weekly</div><p>WhatsApp/Instagram active members, event attendance, and how much of the product spec is genuinely community-sourced — the leading indicator before any sales metric exists.</p></div>
+        <div class="metric-card"><div class="mk">Cumulative revenue</div><div class="mtarget">₹25–40L by M9</div><p>An early-traction floor, alongside repeat-purchase and CM1 — not a vanity number, a real signal of whether the wedge is working.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="step">04</span>Sourcing &amp; manufacturing</h2>
+      <p class="section-sub">Tap a card to expand.</p>
+      <div class="accordion">
+        <div class="acc-item open">
+          <button class="acc-head"><span>Canton Fair — what it's actually useful for</span><span class="chev">+</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>The Canton Fair runs three phases a year; textiles and fashion sit in <strong>Phase 3</strong> (autumn 2026: Oct 31–Nov 4). It recently added a dedicated <strong>functional &amp; technical textiles zone</strong> — waterproof, anti-bacterial, moisture-wicking fabric, direct from mills, where you can compare GSM, composition, and finishing quality in person.</p>
+            <p>The International Pavilion is where English communication is easiest, and it also hosts Indian, Pakistani, Bangladeshi, and Turkish suppliers alongside the Chinese ones — useful for benchmarking a Chinese quote against a regional alternative in the same hall.</p>
+            <p><strong>Practical use for a first collection:</strong> go to source technical yarn/fabric <em>rolls</em>, not finished garments — then get cut-and-sew done domestically. This "Chinese yarn, Indian stitching" hybrid is close to what several credible Indian performance brands already run quietly.</p>
+          </div></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head"><span>Canton Fair vs. everyday sourcing</span><span class="chev">+</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p><strong>Canton Fair vs. "normal" sourcing:</strong> the fair isn't a supply chain, it's a discovery event — twice a year, you meet dozens of mills face-to-face, compare GSM/composition/finishing side by side, and negotiate first terms with people whose factory you can (in principle) walk into. Ongoing sourcing after that first trip is different: it runs through direct contact with the mills you've already vetted (email, WeChat, or a sourcing agent), or through digital B2B platforms like Alibaba/1688 for smaller reorders — faster and cheaper per touch, but riskier if you haven't physically vetted the supplier first. The realistic pattern for a first collection: use the Fair (or a sourcing agent attending on your behalf) to vet and shortlist 2–3 mills once, then move to direct or digital contact for every reorder after that.</p>
+          </div></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head"><span>Import duty reality — what it actually costs to bring in Chinese fabric</span><span class="chev">+</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>Importing fabric/garments from China into India stacks: <strong>Basic Customs Duty 20–25%</strong> ad valorem (or ₹100–500 per unit, whichever is higher), plus a <strong>10% Social Welfare Surcharge on the BCD</strong>, plus <strong>IGST of 5–12%</strong> on the total value including duty and surcharge. Specific textile categories can additionally attract anti-dumping duty.</p>
+            <p><strong>Net effect:</strong> a directly-imported finished technical fabric roll typically lands ~35–45% above its ex-factory quote once everything stacks — which is why "source yarn/grey fabric, finish and cut-sew in India" tends to beat "import finished fabric outright" on landed cost.</p>
+          </div></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head"><span>Where to get it stitched — a realistic Tiruppur starting point</span><span class="chev">+</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>Tiruppur-based activewear manufacturers typically offer: <strong>flatlock and overlock stitching</strong>, in-house sourcing of lycra blends, recycled nylon, poly-spandex and technical mesh, an accessible <strong>MOQ of 50 pieces per style in mixed sizes</strong>, 2–3 week fit-sample turnaround, 4–6 week bulk production, and a standard 30/40/30 milestone payment structure.</p>
+            <p>This is a realistic, low-MOQ entry point for a first collection — the bonded/seamless tier below is a later-stage upgrade, not a Day 1 requirement.</p>
+          </div></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head"><span>Stitching types, explained plainly</span><span class="chev">+</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <div class="stitch-grid">
+              <div class="stitch-card"><div class="tier">Tier 1 · Standard</div><h4>Overlock</h4><p>The default stretch-seam finish — durable, widely available, slightly bulky.</p></div>
+              <div class="stitch-card"><div class="tier">Tier 1 · Activewear standard</div><h4>Flatlock</h4><p>Flat, low-bulk seam that lies against the skin — reduces chafing vs. overlock. Widely available in Tiruppur at low MOQ.</p></div>
+              <div class="stitch-card"><div class="tier">Tier 2 · Premium</div><h4>Bonded / ultrasonic-welded</h4><p>No thread — heat/ultrasonic-fused for a fully smooth look. Fewer Indian manufacturers have the machines at low MOQ — a later-stage upgrade.</p></div>
+              <div class="stitch-card"><div class="tier">Tier 3 · Highest-end</div><h4>Seamless knitting</h4><p>Garment knitted in one continuous piece, zero side seams. Machinery is overwhelmingly China-based — not a Month-1 choice.</p></div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <details class="sources">
+      <summary>Sources — Build strategy</summary>
+      <ul>
+        <li><a href="https://textilefocus.com/a-new-look-at-the-canton-fair-the-biggest-sourcing-hub-for-textile-manufacturers-and-suppliers/" target="_blank" rel="noopener">A New Look at the Canton Fair — Textile Focus</a></li>
+        <li><a href="https://www.newbuyingagent.com/resources/china-vs-india-sourcing-in-2026-when-indian-manufacturing-wins" target="_blank" rel="noopener">China vs. India sourcing 2026 — New Buying Agent</a></li>
+        <li><a href="https://www.wings2fashion.com/tirupur/activewear-manufacturers/" target="_blank" rel="noopener">Activewear Manufacturers in Tiruppur — Wings2Fashion</a></li>
+        <li><a href="https://www.gymshark.com/blog/article/the-official-gymshark-story" target="_blank" rel="noopener">The Official Gymshark Story — Gymshark</a></li>
+        <li><a href="https://www.athflex.com/" target="_blank" rel="noopener">Athflex product range — Athflex.com</a></li>
+        <li><a href="https://ascendants.in/founders-corner/khushboo-mulani-d2c-unit-economics-india-2026/" target="_blank" rel="noopener">D2C unit economics benchmarks 2026 — Ascendants</a></li>
+        <li><a href="https://entrackr.com/exclusive/exclusive-snitch-to-raise-rs-280-cr-in-series-b-round-at-rs-2500-cr-valuation-9316557" target="_blank" rel="noopener">Snitch Series B at ₹2,500 Cr valuation — Entrackr</a></li>
+      </ul>
+    </details>
+
+  </div>
+
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+(function(){
+  var svgNS = "http://www.w3.org/2000/svg";
+  var tooltip = document.getElementById('tooltip');
+
+  function showTooltip(evt, html){
+    tooltip.innerHTML = html;
+    tooltip.classList.add('show');
+    moveTooltip(evt);
+  }
+  function moveTooltip(evt){
+    var x = evt.clientX + 14, y = evt.clientY + 14;
+    var vw = window.innerWidth, vh = window.innerHeight;
+    if (x + 260 > vw) x = evt.clientX - 260;
+    if (y + 100 > vh) y = evt.clientY - 100;
+    tooltip.style.left = x + 'px';
+    tooltip.style.top = y + 'px';
+  }
+  function hideTooltip(){ tooltip.classList.remove('show'); }
+
+  // ---- Price x Performance quadrant chart ----
+  var quadData = [
+    { name: 'Decathlon Performax', price: 1250, perf: 6, note: 'Functional technical entry gear used for real training; budget materials cap the ceiling. Mass/corporate — not a direct comparable.', range: '₹500–2,000', group: 'in', dx: 6, dy: -10 },
+    { name: 'HRX', price: 1600, perf: 3, note: 'Celebrity-led lifestyle athleisure — casual fit and fabrics, not built for competitive performance.', range: '₹700–2,500', group: 'in', dx: 10, dy: 10 },
+    { name: 'Kica', price: 1370, perf: 3.5, note: 'Nykaa-owned since 2022 (acquired for ₹4.51 Cr). "KICASKN" branded fabric on sports bras/leggings, but mass-tier pricing and no disclosed construction detail.', range: '₹839–1,899', group: 'in', dx: -14, dy: -10 },
+    { name: 'Bird Eye', price: 2250, perf: 5, note: 'Comfort-first loungewear-sportswear crossover across yoga/running/gym/pilates/court — positioned for everyday versatility over competitive training.', range: '₹1,499–2,999', group: 'in', dx: 8, dy: -10 },
+    { name: 'Technosport', price: 1650, perf: 7, note: 'Positioned explicitly as performance sportswear; largest activewear brand by unit volume (12M+ units/yr).', range: '₹800–2,500', group: 'in' },
+    { name: 'Fuaark', price: 1150, perf: 6.5, note: 'Compression-focused gymwear, bootstrapped and profitable — solid execution, but its price ceiling caps how "premium" the claim can read.', range: '₹799–1,499', group: 'in', dx: -10, dy: 38 },
+    { name: 'Athflex', price: 1324, perf: 6.5, note: 'Compression-focused, genuinely technical marketing ("engineered for the Indian summer," sweat-wicking claims) and a strong 4.8/5 across 1,700+ on-site reviews (self-hosted, not independently verified) — but discloses no mill, composition %, or test data, the same gap as the rest of the mass tier.', range: '₹749–1,899', group: 'in', dx: -4, dy: -54 },
+    { name: 'Alcis', price: 1140, perf: 5, note: 'Positions as "technologically advanced sportswear at Indian prices" — explicitly mass-market by its own MD\'s framing, and a broad multi-sport range (running, yoga, football, racquet sports) that reads more general-lifestyle than narrowly technical. No independent rating could be confirmed this pass.', range: '₹680–1,599 (tights/leggings; exact MRP vs. sale price unclear from listings)', group: 'in', dx: -18, dy: 26 },
+    { name: 'BlissClub', price: 3075, perf: 4, note: "Framed around comfort and everyday lifestyle — not marketed as elite/competitive performance gear. The only brand reaching the premium band, and still loss-making.", range: '₹1,899–4,249', group: 'in' },
+    { name: 'Ela Wear', price: 3600, perf: 5.5, note: 'Two named fabric systems — "ButterBod" (lifestyle) and "Ultraflex" (compression/performance) — a hybrid pitch close to yours, but still no disclosed mill or composition %.', range: '₹2,299–4,699 (core; bralettes from ₹1,499)', group: 'in', dx: 10, dy: -10 },
+    { name: 'Under Armour', price: 2900, perf: 8, note: 'HeatGear/ColdGear moisture management, 4-way stretch, flatlock seams. Plotted at the top of its verified India range — premium lines (Rush) exist but their India pricing isn\'t independently confirmed.', range: '₹1,800–3,000 (India, core HeatGear)', group: 'global', dx: -10, dy: 16 },
+    { name: 'Nike', price: 2650, perf: 9, note: 'Global reference standard — decades of Dri-FIT (capillary-action polyester) and engineered-construction R&D. India pricing shown; not an India-specific product.', range: '₹1,795–3,500+ (India, core Dri-FIT)', group: 'global', dx: 14, dy: -8 },
+    { name: 'Gymshark', price: 4600, perf: 7.5, note: 'Strong for lifting/training specifically, less running-focused. Not officially sold in India — ₹ range reflects import/reseller pricing, shown for reference only.', range: '≈₹1,760–7,480 (import pricing)', group: 'global' }
+  ];
+
+  function renderQuadChart(){
+    var container = document.getElementById('quadChart');
+    if (!container) return;
+    var W = 800, H = 440;
+    var plotX0 = 66, plotX1 = 780, plotY0 = 24, plotY1 = 380;
+    var priceMax = 8000, perfMax = 10;
+    var xScale = (plotX1 - plotX0) / priceMax;
+    var yScale = (plotY1 - plotY0) / perfMax;
+    function X(p){ return plotX0 + p * xScale; }
+    function Y(s){ return plotY1 - s * yScale; }
+
+    var svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.setAttribute('width', '100%');
+    svg.style.display = 'block';
+
+    var divPriceX = X(2500), divPerfY = Y(5);
+
+    var zone = document.createElementNS(svgNS, 'rect');
+    zone.setAttribute('x', divPriceX);
+    zone.setAttribute('y', plotY0);
+    zone.setAttribute('width', plotX1 - divPriceX);
+    zone.setAttribute('height', divPerfY - plotY0);
+    zone.setAttribute('fill', 'var(--whitespace-fill)');
+    zone.setAttribute('stroke', 'var(--text-muted)');
+    zone.setAttribute('stroke-dasharray', '3,3');
+    zone.setAttribute('rx', 6);
+    svg.appendChild(zone);
+
+    [ [divPriceX, plotY0, divPriceX, plotY1], [plotX0, divPerfY, plotX1, divPerfY] ].forEach(function(c){
+      var line = document.createElementNS(svgNS, 'line');
+      line.setAttribute('x1', c[0]); line.setAttribute('y1', c[1]);
+      line.setAttribute('x2', c[2]); line.setAttribute('y2', c[3]);
+      line.setAttribute('stroke', 'var(--gridline)');
+      line.setAttribute('stroke-width', '1.5');
+      svg.appendChild(line);
+    });
+
+    var launchCapX = X(4000);
+    var capLine = document.createElementNS(svgNS, 'line');
+    capLine.setAttribute('x1', launchCapX); capLine.setAttribute('y1', plotY0);
+    capLine.setAttribute('x2', launchCapX); capLine.setAttribute('y2', divPerfY);
+    capLine.setAttribute('stroke', 'var(--series-1)');
+    capLine.setAttribute('stroke-width', '1.5');
+    capLine.setAttribute('stroke-dasharray', '4,3');
+    capLine.setAttribute('opacity', '0.6');
+    svg.appendChild(capLine);
+    var capLabel = document.createElementNS(svgNS, 'text');
+    capLabel.setAttribute('x', launchCapX + 6); capLabel.setAttribute('y', plotY0 + 34);
+    capLabel.setAttribute('class', 'quad-label');
+    capLabel.setAttribute('text-anchor', 'start');
+    capLabel.setAttribute('fill', 'var(--series-1)');
+    capLabel.textContent = '← your launch band (₹2.5–4k)';
+    svg.appendChild(capLabel);
+
+    var border = document.createElementNS(svgNS, 'rect');
+    border.setAttribute('x', plotX0); border.setAttribute('y', plotY0);
+    border.setAttribute('width', plotX1 - plotX0); border.setAttribute('height', plotY1 - plotY0);
+    border.setAttribute('fill', 'none');
+    border.setAttribute('stroke', 'var(--baseline)');
+    border.setAttribute('stroke-width', '1');
+    svg.appendChild(border);
+
+    var quadLabels = [
+      { x: divPriceX + 10, y: plotY0 + 16, t: 'No Indian brand here', anchor: 'start' },
+      { x: plotX0 + 10, y: plotY0 + 16, t: 'Mass + performance', anchor: 'start' },
+      { x: divPriceX + 10, y: plotY1 - 8, t: 'Premium + lifestyle', anchor: 'start' },
+      { x: plotX0 + 10, y: plotY1 - 8, t: 'Mass + lifestyle', anchor: 'start' }
+    ];
+    quadLabels.forEach(function(q){
+      var t = document.createElementNS(svgNS, 'text');
+      t.setAttribute('x', q.x); t.setAttribute('y', q.y);
+      t.setAttribute('class', 'quad-label');
+      t.setAttribute('text-anchor', q.anchor);
+      t.textContent = q.t;
+      svg.appendChild(t);
+    });
+
+    var xLabel = document.createElementNS(svgNS, 'text');
+    xLabel.setAttribute('x', (plotX0 + plotX1) / 2);
+    xLabel.setAttribute('y', H - 4);
+    xLabel.setAttribute('class', 'axis-label');
+    xLabel.setAttribute('text-anchor', 'middle');
+    xLabel.textContent = 'Price (₹) — retail range midpoint';
+    svg.appendChild(xLabel);
+
+    [0,2000,4000,6000,8000].forEach(function(p){
+      var t = document.createElementNS(svgNS, 'text');
+      t.setAttribute('x', X(p)); t.setAttribute('y', plotY1 + 16);
+      t.setAttribute('class', 'axis-label');
+      t.setAttribute('text-anchor', 'middle');
+      t.textContent = '₹' + (p/1000) + 'k';
+      svg.appendChild(t);
+    });
+
+    var yLabelTop = document.createElementNS(svgNS, 'text');
+    yLabelTop.setAttribute('x', 4); yLabelTop.setAttribute('y', plotY0 + 6);
+    yLabelTop.setAttribute('class', 'axis-label');
+    yLabelTop.textContent = 'Elite / technical ↑';
+    svg.appendChild(yLabelTop);
+    var yLabelBot = document.createElementNS(svgNS, 'text');
+    yLabelBot.setAttribute('x', 4); yLabelBot.setAttribute('y', plotY1);
+    yLabelBot.setAttribute('class', 'axis-label');
+    yLabelBot.textContent = 'Casual / lifestyle ↓';
+    svg.appendChild(yLabelBot);
+
+    quadData.forEach(function(d){
+      var cx = X(d.price) + (d.dx || 0);
+      var cy = Y(d.perf) + (d.dy || 0);
+
+      var dot = document.createElementNS(svgNS, 'circle');
+      dot.setAttribute('cx', cx); dot.setAttribute('cy', cy); dot.setAttribute('r', 7);
+      dot.setAttribute('fill', d.group === 'global' ? 'var(--series-2)' : 'var(--series-1)');
+      dot.setAttribute('stroke', 'var(--surface-1)');
+      dot.setAttribute('stroke-width', '2');
+      dot.setAttribute('class', 'dot-shape');
+      dot.addEventListener('mousemove', function(evt){
+        showTooltip(evt, '<b>' + d.name + '</b>Price range: ' + d.range + '<br>' + d.note);
+      });
+      dot.addEventListener('mouseleave', hideTooltip);
+      svg.appendChild(dot);
+
+      var label = document.createElementNS(svgNS, 'text');
+      label.setAttribute('x', cx + 10);
+      label.setAttribute('y', cy + 4);
+      label.setAttribute('class', 'row-label');
+      label.setAttribute('font-size', '11.5');
+      label.textContent = d.name;
+      svg.appendChild(label);
+    });
+
+    container.innerHTML = '';
+    container.appendChild(svg);
+  }
+
+  // ---- Revenue bar chart (log scale) ----
+  var revenueData = [
+    { name: 'Decathlon India (overall)', value: 4008, display: '₹4,008 Cr (FY24)', status: 'good', note: 'PAT ₹197 Cr FY24, up from a ₹18.6 Cr loss in FY23. Mass/corporate — not a direct comparable.' },
+    { name: 'Technosport', value: 287, display: '₹287 Cr (FY23)', status: 'good', note: '₹29.3 Cr net profit, FY23 — the most solidly-sourced figure. Press reports FY24/25 near ₹300Cr+ but less independently verified.' },
+    { name: 'HRX', value: 210, display: '~₹200–220 Cr', status: 'none', note: 'Disputed: a 2022 report cites HRX "eyeing" ₹1,000 Cr for FY23 — a target, not a confirmed actual. Neither figure is audited/disclosed — low confidence.' },
+    { name: 'BlissClub', value: 131.5, display: '₹131.5 Cr (FY25)', status: 'warning', note: '-₹20 Cr loss, -15% EBITDA margin. ₹160 Cr Series B closed 2026.' },
+    { name: 'Fuaark', value: 42.5, display: '₹42.5 Cr (FY25)', status: 'good', note: 'Bootstrapped, profitable. Grew from ₹5.85 Cr in FY21.' },
+    { name: 'Athflex', value: 4.5, display: '₹4.5 Cr ARR', status: 'good', note: 'Bootstrapped, zero external funding. Corrected down from an earlier ~₹10 Cr estimate.' },
+    { name: 'Alcis Sports', value: 19.2, display: '₹19.2 Cr (FY24)', status: 'none', note: "Low-confidence: sits oddly below the company's own ₹110 Cr-by-FY20 target stated in 2016." }
+  ];
+
+  function statusColor(s){
+    return s === 'good' ? 'var(--status-good)' : (s === 'warning' ? 'var(--status-warning)' : 'var(--text-muted)');
+  }
+
+  function renderRevenueChart(){
+    var container = document.getElementById('revenueChart');
+    if (!container) return;
+    var sorted = revenueData.slice().sort(function(a,b){ return b.value - a.value; });
+    var n = sorted.length;
+    var W = 800, chartH = 190, topPad = 16, axisPad = 40, leftPad = 14, rightPad = 14;
+    var H = topPad + chartH + axisPad;
+    var plotW = W - leftPad - rightPad;
+    var barGap = 16;
+    var barW = (plotW - barGap * (n - 1)) / n;
+
+    var logMin = Math.log10(4), logMax = Math.log10(4300);
+
+    var svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.setAttribute('width', '100%');
+    svg.style.display = 'block';
+
+    var baseline = document.createElementNS(svgNS, 'line');
+    baseline.setAttribute('x1', leftPad); baseline.setAttribute('x2', W - rightPad);
+    baseline.setAttribute('y1', topPad + chartH); baseline.setAttribute('y2', topPad + chartH);
+    baseline.setAttribute('stroke', 'var(--baseline)');
+    baseline.setAttribute('stroke-width', '1');
+    svg.appendChild(baseline);
+
+    sorted.forEach(function(d, i){
+      var x = leftPad + i * (barW + barGap);
+      var frac = (Math.log10(d.value) - logMin) / (logMax - logMin);
+      var barH = Math.max(frac * chartH, 4);
+      var y = topPad + chartH - barH;
+
+      var bar = document.createElementNS(svgNS, 'rect');
+      bar.setAttribute('x', x);
+      bar.setAttribute('y', y);
+      bar.setAttribute('width', barW);
+      bar.setAttribute('height', barH);
+      bar.setAttribute('rx', 5);
+      bar.setAttribute('fill', statusColor(d.status));
+      bar.setAttribute('class', 'bar-shape');
+      bar.addEventListener('mousemove', function(evt){
+        showTooltip(evt, '<b>' + d.name + '</b>' + d.display + '<br>' + d.note);
+      });
+      bar.addEventListener('mouseleave', hideTooltip);
+      svg.appendChild(bar);
+
+      var valLabel = document.createElementNS(svgNS, 'text');
+      valLabel.setAttribute('x', x + barW/2);
+      valLabel.setAttribute('y', y - 6);
+      valLabel.setAttribute('class', 'value-label');
+      valLabel.setAttribute('text-anchor', 'middle');
+      valLabel.textContent = d.value >= 1000 ? Math.round(d.value/1000*10)/10 + 'k' : d.value;
+      svg.appendChild(valLabel);
+
+      var nameLabel = document.createElementNS(svgNS, 'text');
+      nameLabel.setAttribute('x', x + barW/2);
+      nameLabel.setAttribute('y', topPad + chartH + 16);
+      nameLabel.setAttribute('class', 'axis-label');
+      nameLabel.setAttribute('text-anchor', 'middle');
+      var words = d.name.split(' ');
+      if (d.name.length > 12) {
+        var line1 = words.slice(0, Math.ceil(words.length/2)).join(' ');
+        var line2 = words.slice(Math.ceil(words.length/2)).join(' ');
+        var t1 = document.createElementNS(svgNS, 'tspan');
+        t1.setAttribute('x', x + barW/2); t1.setAttribute('dy', '0');
+        t1.textContent = line1;
+        var t2 = document.createElementNS(svgNS, 'tspan');
+        t2.setAttribute('x', x + barW/2); t2.setAttribute('dy', '12');
+        t2.textContent = line2;
+        nameLabel.appendChild(t1);
+        nameLabel.appendChild(t2);
+      } else {
+        nameLabel.textContent = d.name;
+      }
+      svg.appendChild(nameLabel);
+    });
+
+    container.innerHTML = '';
+    container.appendChild(svg);
+  }
+
+  renderQuadChart();
+  renderRevenueChart();
+
+  // ---- Accordions ----
+  document.querySelectorAll('.acc-head').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.acc-item');
+      item.classList.toggle('open');
+    });
+  });
+
+  // ---- Page tabs ----
+  document.querySelectorAll('.page-tab-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.page-tab-btn').forEach(function(b){ b.setAttribute('aria-selected', 'false'); });
+      document.querySelectorAll('.page-panel').forEach(function(p){ p.classList.remove('active'); });
+      btn.setAttribute('aria-selected', 'true');
+      document.getElementById('page-' + btn.dataset.page).classList.add('active');
+    });
+  });
+
+  // ---- Theme toggle ----
+  var themeBtn = document.getElementById('themeToggle');
+  var root = document.documentElement;
+  themeBtn.addEventListener('click', function(){
+    var current = root.getAttribute('data-theme');
+    if (current === 'dark') {
+      root.setAttribute('data-theme', 'light');
+      themeBtn.textContent = 'Dark mode';
+    } else {
+      root.setAttribute('data-theme', 'dark');
+      themeBtn.textContent = 'Light mode';
+    }
+  });
+
+  window.addEventListener('resize', function(){
+    renderQuadChart();
+    renderRevenueChart();
+  });
+})();
+</script>
+</body>
+</html>
