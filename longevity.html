@@ -379,9 +379,9 @@ tr{transition:background .2s}tbody tr:hover,table tr:hover td{background:color-m
         <span class="verdict" id="emBadge"></span>
       </div>
       <div id="emBody" style="margin-top:14px"></div>
-      <details class="wa-more" id="waMore"><summary><span class="wa-ico">●</span> WhatsApp coach <span class="tag" id="waBadgeMini">pending Meta approval</span></summary>
+      <details class="wa-more" id="waMore"><summary><span class="wa-ico">●</span> WhatsApp coach <span class="tag" id="waBadgeMini">coming soon</span></summary>
       <div class="row" style="justify-content:space-between;align-items:flex-start;margin-top:10px">
-        <div><p class="muted small" style="margin:0">Chat-based meal logging and alerts. Turns on once the WhatsApp Business account is approved.</p></div>
+        <div><p class="muted small" style="margin:0">Chat-based meal logging and alerts. Coming soon.</p></div>
         <span class="verdict" id="waBadge"></span>
       </div>
       <div id="waBody" style="margin-top:14px"></div></details>
@@ -1251,7 +1251,7 @@ async function renderChat(){
 async function loadWA(){if(MODE!=='live')return;try{const r=await fetch('/api/wa/status',{credentials:'same-origin'});if(r.ok)WA=await r.json()}catch(e){}}
 function renderWA(){const b=$('#waBody'),badge=$('#waBadge');
   if(MODE!=='live'){badge.className='verdict v-y';badge.textContent='Demo';b.innerHTML=`<p class="small">Sign in with WHOOP to connect your WhatsApp. The preview on the left shows exactly what you'd receive.</p>${ON_APP||APP_URL?`<a class="btn pri" href="${ON_APP?'/login':esc(APP_URL)+'/login'}">Sign in with WHOOP</a>`:''}`;return}
-  if(!WA.configured){badge.className='verdict v-y';badge.textContent='Setup pending';b.innerHTML='<p class="small muted">Waiting on Meta to approve the WhatsApp Business account. Use email alerts meanwhile.</p>';return}
+  if(!WA.configured){badge.className='verdict v-y';badge.textContent='Setup pending';b.innerHTML='<p class="small muted">WhatsApp alerts and meal logging by chat are coming soon. Use email alerts meanwhile.</p>';return}
   if(WA.linked){badge.className='verdict '+(WA.paused?'v-y':'v-g');badge.textContent=WA.paused?'Paused':'Connected';
     b.innerHTML=`<div class="row"><div style="flex:1;min-width:200px"><div class="small muted">Linked number</div><div class="num" style="font-size:22px">${esc(WA.phone)}</div></div><button class="btn sm wa" id="waTest">Send test message</button><button class="btn sm" id="waPause">${WA.paused?'Resume alerts':'Pause alerts'}</button><button class="btn sm danger" id="waUnlink">Unlink</button></div><p class="tiny muted" style="margin-top:10px">Chat with your coach: send meals, or <b>today</b>, <b>brief</b>, <b>undo</b>, <b>pause</b>, <b>help</b>.</p>`;
     $('#waTest').onclick=async()=>{const r=await fetch('/api/wa/test',{method:'POST',credentials:'same-origin'});$('#waTest').textContent=r.ok?'Sent ✓':'Failed'};
@@ -1281,14 +1281,14 @@ function renderEmail(){const b=$('#emBody'),badge=$('#emBadge'),E=(WA.email||{})
   badge.className='verdict v-y';badge.textContent='Off';
   b.innerHTML=`<label class="f" for="emAddr">Email address</label><div class="phone" style="max-width:480px"><input type="text" id="emAddr" inputmode="email" autocomplete="email" placeholder="you@gmail.com"><button class="btn pri" id="emSend">Send code</button></div><p class="tiny" id="emErr" style="color:var(--red);min-height:1em"></p><div id="emStep2"></div><p class="tiny muted">🔒 We confirm the address with a one-time code. It's stored encrypted, used only for your alerts, and every email has a one-click unsubscribe.</p>`;
   $('#emSend').onclick=async()=>{$('#emErr').textContent='';$('#emSend').disabled=true;const r=await fetch('/api/email/start',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:$('#emAddr').value,tz:-new Date().getTimezoneOffset()})});const j=await r.json();$('#emSend').disabled=false;
-    if(!r.ok){$('#emErr').textContent={invalid_email:'Please enter a valid email address.',rate_limited:'Too many codes requested. Try again in an hour.',send_failed:'Could not send the email. Try again shortly.'}[j.error]||'Could not send the code.';return}
+    if(!r.ok){$('#emErr').textContent={invalid_email:'Please enter a valid email address.',rate_limited:'Too many codes requested. Try again in an hour.',send_failed:'Could not send the email'+(j.detail?' ('+j.detail+')':'')+'.'}[j.error]||'Could not send the code.';return}
     $('#emStep2').innerHTML=`<p class="small">We emailed a 6-digit code to ${esc(j.email)}. Check spam/promotions if you don't see it.</p><div class="otp" id="emOtp">${'<input inputmode="numeric" maxlength="1" aria-label="digit">'.repeat(6)}</div><div class="row" style="margin-top:10px"><button class="btn pri" id="emVerify">Verify</button><span class="tiny muted">Expires in 10 min</span></div>`;
     const go=async code=>{const v=await fetch('/api/email/verify',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({code})});const vj=await v.json();if(v.ok){await loadWA();renderEmail();renderAlertsHist()}else{ins.forEach(y=>y.value='');ins[0].focus();$('#emErr').textContent=vj.error==='wrong_code'?`Wrong code (${vj.left} tries left).`:vj.error==='expired'?'Code expired. Send a new one.':'Too many attempts. Request a new code.'}};
     const ins=otpBoxes('emOtp',go);$('#emVerify').onclick=()=>go(ins.map(x=>x.value).join(''));
   };
 }
 function renderAlertsHist(){const h=(WA.history||[]);$('#hist').innerHTML=h.length?h.map(x=>`<div class="exp"><span>${esc(x.title)}</span><span class="muted">${new Date(x.t).toLocaleString('en-IN',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span></div>`).join(''):'None yet.'}
-async function renderAlerts(){await loadWA();renderEmail();renderWA();$('#waBadgeMini').textContent=WA.linked?'connected':WA.configured?'available':'pending Meta approval';if(WA.linked)$('#waMore').open=true;renderPrefs();renderChat();
+async function renderAlerts(){await loadWA();renderEmail();renderWA();$('#waBadgeMini').textContent=WA.linked?'connected':WA.configured?'available':'coming soon';if(WA.linked)$('#waMore').open=true;renderPrefs();renderChat();
   const h=(WA.history||[]);$('#hist').innerHTML=h.length?h.map(x=>`<div class="exp"><span>${esc(x.title)}</span><span class="muted">${new Date(x.t).toLocaleString('en-IN',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span></div>`).join(''):'None yet.';}
 window.addEventListener('hashchange',()=>{const t=location.hash.slice(1);if(['today','plan','food','trends','long','alerts'].includes(t))showTab(t)});
 document.addEventListener('visibilitychange',async()=>{if(document.visibilityState==='visible'&&MODE==='live'){try{const st=await fetch('/api/state',{credentials:'same-origin'});if(st.ok){STATE=await st.json();renderNutrition();renderActions()}}catch(e){}}});
